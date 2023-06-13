@@ -1,0 +1,18 @@
+# Python
+*.pyc
+__pycache__/
+venv/
+*.env
+
+# Selenium
+geckodriver.log
+geckodriver.log.*
+chromedriver.log
+chromedriver.log.*
+
+# PostgreSQL
+*.psql
+*.sql
+
+# Other
+.DS_Store
