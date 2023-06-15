@@ -4,9 +4,7 @@ COPY requirements.txt ./requirements.txt
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-WORKDIR /app
-
-COPY Consumer/writer.py ./Consumer/
+WORKDIR /app/Consumer
 COPY . .
 
-ENTRYPOINT ["python", "/app/Consumer/writer.py"]
+ENTRYPOINT ["python", "writer.py"]
