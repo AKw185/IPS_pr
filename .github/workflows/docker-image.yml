@@ -37,15 +37,15 @@ jobs:
       - name: Run tests
         run: |
           cd Consumer
-          docker run consumer python -m pytest /app/tests
-          cd ..
+          docker run --volume $PWD:/app consumer python -m pytest /app/tests
+          cd ../..
 
-          cd Producer
-          docker run producer python -m pytest /app/tests
-          cd ..
+          cd IPS/Producer
+          docker run --volume $PWD:/app producer python -m pytest /app/tests
+          cd ../..
 
-          cd SeleniumApp
-          docker run seleniumapp python -m pytest /app/tests
-          cd ..
+          cd IPS/SeleniumApp
+          docker run --volume $PWD:/app seleniumapp python -m pytest /app/tests
+          cd ../..
 
 
