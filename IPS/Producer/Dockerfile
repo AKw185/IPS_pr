@@ -4,7 +4,7 @@ RUN pip install --no-cache-dir --upgrade pip==22.3.1
 COPY requirements.txt ./requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-WORKDIR /app
+WORKDIR /app/Producer
 COPY . .
 
-ENTRYPOINT ["python", "/Producer/kproducer.py"]
+ENTRYPOINT ["python", "kproducer.py"]

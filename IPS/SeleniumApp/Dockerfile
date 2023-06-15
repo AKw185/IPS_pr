@@ -6,9 +6,9 @@ RUN apk update
 RUN apk add postgresql-dev gcc python3-dev musl-dev
 RUN pip install --no-cache-dir -r requirements.txt
 
-WORKDIR /app
+WORKDIR /app/SeleniumApp
 COPY . .
 
 EXPOSE 3000
 
-ENTRYPOINT ["python", "/SeleniumApp/main.py"]
+ENTRYPOINT ["python", "main.py"]
