@@ -27,22 +27,22 @@ jobs:
           cd IPS/Consumer
           docker build -t consumer .
           cd ..
-          cd IPS/Producer
+          cd Producer
           docker build -t producer .
           cd ..
-          cd IPS/SeleniumApp
+          cd SeleniumApp
           docker build -t seleniumapp .
           cd ..
 
       - name: Run tests
         run: |
-          cd IPS/Consumer
+          cd Consumer
           docker run consumer python -m pytest
           cd ..
-          cd IPS/Producer
+          cd Producer
           docker run producer python -m pytest
           cd ..
-          cd IPS/SeleniumApp
+          cd SeleniumApp
           docker run seleniumapp python -m pytest
           cd ..
 
