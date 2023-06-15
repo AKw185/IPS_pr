@@ -21,17 +21,29 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+
+      - name: Build and test components
+        run: |
+          cd Consumer
+          docker build -t consumer .
+          cd ..
+          cd Producer
+          docker build -t producer .
+          cd ..
+          cd SeleniumApp
+          docker build -t seleniumapp .
+          cd ..
 
       - name: Run tests
         run: |
-          python -m pytest
+          cd Consumer
+          docker run consumer python -m pytest
+          cd ..
+          cd Producer
+          docker run producer python -m pytest
+          cd ..
+          cd SeleniumApp
+          docker run seleniumapp python -m pytest
+          cd ..
 
-      - name: Build Docker images
-        run: |
-          docker-compose build
-
-      - name: Run Docker containers
-        run: |
-          docker-compose up -d
 
