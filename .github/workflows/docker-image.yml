@@ -32,18 +32,20 @@ jobs:
           cd ..
           cd SeleniumApp
           docker build -t seleniumapp .
-          cd ../..
+          cd ..
 
       - name: Run tests
         run: |
-          cd IPS/Consumer
-          docker run consumer python -m pytest
+          cd Consumer
+          docker run consumer python -m pytest /app/tests
           cd ..
+
           cd Producer
-          docker run producer python -m pytest
+          docker run producer python -m pytest /app/tests
           cd ..
+
           cd SeleniumApp
-          docker run seleniumapp python -m pytest
+          docker run seleniumapp python -m pytest /app/tests
           cd ..
 
 
