@@ -1,0 +1,52 @@
+services:
+  app:
+    image: app:0.0.1
+    build: ./SeleniumApp
+    ports: [ "8086:8086" ]
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.3.0
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  broker:
+    image: confluentinc/cp-kafka:7.3.0
+    container_name: broker
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://broker:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+
+  dbui:
+    image: dpage/pgadmin4:6
+    ports: [ "8000:8000" ]
+    environment:
+      PGADMIN_LISTEN_PORT: 8000
+      PGADMIN_DEFAULT_EMAIL: admin@pm.bet
+      PGADMIN_DEFAULT_PASSWORD: password
+  db:
+    image: postgres:15.1-alpine
+    ports: [ "5432:5432" ]
+    environment:
+      POSTGRES_DB: app
+      POSTGRES_PASSWORD: password
+
+  producer:
+    image: producer:0.0.1
+    build: ./Producer
+    ports: [ "8089:8089" ]
+
+  consumer:
+    image: consumer:0.0.1
+    build: ./Consumer
+    ports: [ "8090:8090" ]
