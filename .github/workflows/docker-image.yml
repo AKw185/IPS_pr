@@ -25,7 +25,7 @@ jobs:
       - name: Build and test components
         run: |
           cd IPS/Consumer
-          docker build -t consumer -f Dockerfile .
+          docker build -t akukharska/consumer:latest
           cd ..
           cd Producer
           docker build -t producer -f Dockerfile .
@@ -37,7 +37,7 @@ jobs:
       - name: Push Docker images
         run: |
           docker login -u akukharska -p 'yf$+2%Pc*c&%@(W'
-          docker push akukharska:consumer
+          docker push akukharska/consumer:latest
           docker push akukharska/ips:producer
           docker push akukharska/ips:seleniumapp
 
