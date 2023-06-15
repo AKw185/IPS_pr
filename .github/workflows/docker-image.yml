@@ -24,26 +24,28 @@ jobs:
 
       - name: Build and test components
         run: |
-          cd Consumer
-          docker build -t consumer .
+          cd IPS/Consumer
+          docker build -t consumer -f Dockerfile .
           cd ..
           cd Producer
-          docker build -t producer .
+          docker build -t producer -f Dockerfile .
           cd ..
           cd SeleniumApp
-          docker build -t seleniumapp .
+          docker build -t seleniumapp -f Dockerfile .
           cd ..
 
       - name: Run tests
         run: |
           cd Consumer
-          docker run consumer python -m pytest
-          cd ..
-          cd Producer
-          docker run producer python -m pytest
-          cd ..
-          cd SeleniumApp
-          docker run seleniumapp python -m pytest
-          cd ..
+          docker run --volume $PWD:/app consumer python -m pytest /app/tests
+          cd ../..
+
+          cd IPS/Producer
+          docker run --volume $PWD:/app producer python -m pytest /app/tests
+          cd ../..
+
+          cd IPS/SeleniumApp
+          docker run --volume $PWD:/app seleniumapp python -m pytest /app/tests
+          cd ../..
 
 
