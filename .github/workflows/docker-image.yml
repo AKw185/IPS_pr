@@ -36,7 +36,7 @@ jobs:
 
       - name: Run Consumer tests
         run: |
-          docker run --volume $PWD/IPS/Consumer:/app consumer python -m pytest /app
+         docker run --volume D:/IPS/IPS/Consumer:/app consumer python -m pytest /app
           
       - name: Run Producer tests
         run: |
