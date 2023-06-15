@@ -25,13 +25,13 @@ jobs:
       - name: Build and test components
         run: |
           cd IPS/Consumer
-          docker build -t consumer .
+          docker build -t consumer -f Dockerfile .
           cd ..
           cd Producer
-          docker build -t producer .
+          docker build -t producer -f Dockerfile .
           cd ..
           cd SeleniumApp
-          docker build -t seleniumapp .
+          docker build -t seleniumapp -f Dockerfile .
           cd ..
 
       - name: Run tests
