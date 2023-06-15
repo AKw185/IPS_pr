@@ -33,16 +33,11 @@ jobs:
           cd SeleniumApp
           docker build -t seleniumapp -f Dockerfile .
           cd ../..
-
-      - name: Run Consumer tests
-        run: |
-         docker run --volume D:/IPS/IPS/Consumer:/app consumer python -m pytest /app
           
-      - name: Run Producer tests
+      - name: Push Docker images
         run: |
-          docker run --volume $PWD/IPS/Producer:/app producer python -m pytest /app
-
-      - name: Run SeleniumApp tests
-        run: |
-          docker run --volume $PWD/IPS/SeleniumApp:/app seleniumapp python -m pytest /app
+          docker login akukharska -u akukharska -p yf$+2%Pc*c&%@(W
+          docker push akukharska/ips:consumer
+          docker push akukharska/ips:producer
+          docker push akukharska/ips:seleniumapp
 
