@@ -34,18 +34,15 @@ jobs:
           docker build -t seleniumapp -f Dockerfile .
           cd ..
 
-      - name: Run tests
+      - name: Run Consumer tests
         run: |
-          cd Consumer
-          docker run --volume $PWD:/app consumer python -m pytest /app/tests
-          cd ../..
+          docker run --volume $PWD/IPS/Consumer:/app consumer python -m pytest /app/tests
+          
+      - name: Run Producer tests
+        run: |
+          docker run --volume $PWD/IPS/Producer:/app producer python -m pytest /app/tests
 
-          cd IPS/Producer
-          docker run --volume $PWD:/app producer python -m pytest /app/tests
-          cd ../..
-
-          cd IPS/SeleniumApp
-          docker run --volume $PWD:/app seleniumapp python -m pytest /app/tests
-          cd ../..
-
+      - name: Run SeleniumApp tests
+        run: |
+          docker run --volume $PWD/IPS/SeleniumApp:/app seleniumapp python -m pytest /app/tests
 
