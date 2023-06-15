@@ -5,8 +5,8 @@ from selenium.webdriver.support import expected_conditions as EC
 import psycopg2
 import time
 
-from Program1.Consumer.writer import consumer
-from Program1.Producer.kproducer import producer
+from IPS.Consumer.writer import consumer
+from IPS.Producer.kproducer import producer
 
 
 options = webdriver.ChromeOptions()
