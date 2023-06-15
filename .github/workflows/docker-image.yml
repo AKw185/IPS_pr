@@ -32,7 +32,7 @@ jobs:
           cd ..
           cd SeleniumApp
           docker build -t seleniumapp .
-          cd ..
+          cd ../..
 
       - name: Run tests
         run: |
