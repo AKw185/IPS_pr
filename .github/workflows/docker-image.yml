@@ -36,7 +36,7 @@ jobs:
 
       - name: Run tests
         run: |
-          cd Consumer
+          cd IPS/Consumer
           docker run consumer python -m pytest
           cd ..
           cd Producer
