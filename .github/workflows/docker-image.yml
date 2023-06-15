@@ -36,13 +36,13 @@ jobs:
 
       - name: Run Consumer tests
         run: |
-          docker run --volume $PWD/IPS/Consumer:/app consumer python -m pytest /app/tests
+          docker run --volume $PWD/IPS/Consumer:/app consumer python -m pytest /app
           
       - name: Run Producer tests
         run: |
-          docker run --volume $PWD/IPS/Producer:/app producer python -m pytest /app/tests
+          docker run --volume $PWD/IPS/Producer:/app producer python -m pytest /app
 
       - name: Run SeleniumApp tests
         run: |
-          docker run --volume $PWD/IPS/SeleniumApp:/app seleniumapp python -m pytest /app/tests
+          docker run --volume $PWD/IPS/SeleniumApp:/app seleniumapp python -m pytest /app
 
