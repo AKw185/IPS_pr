@@ -25,6 +25,7 @@ jobs:
       - name: Build and test components
         run: |
           cd IPS/Consumer
+          docker login -u akukharska -p 'yf$+2%Pc*c&%@(W'
           docker build -t akukharska/consumer:latest
           cd ..
           cd Producer
